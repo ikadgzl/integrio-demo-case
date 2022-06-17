@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Loading from '../components/icons/Loading';
+import UserCreateForm from '../components/UserCreateForm';
 import UserFilter from '../components/UserFilter';
 import UserList from '../components/UserList';
 import { getUserContext } from '../context/UserContext';
@@ -37,6 +38,7 @@ const UserSearch = () => {
 
   return (
     <section>
+      <UserCreateForm />
       <UserFilter />
       <UserList />
     </section>

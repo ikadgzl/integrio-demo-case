@@ -21,8 +21,6 @@ export const universityReducer = (
       return { ...state, isLoading: action.payload.isLoading };
 
     case UniversityActionTypes.SET_QUERY_PARAMS:
-      console.log(action);
-
       return { ...state, queryParams: action.payload.queryParams };
 
     case UniversityActionTypes.FETCH_UNIVERSITIES:

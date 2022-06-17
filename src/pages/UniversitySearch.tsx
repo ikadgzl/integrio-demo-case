@@ -43,8 +43,6 @@ const UniversitySearch = () => {
         payload: { isLoading: true },
       });
 
-      console.log('from here');
-
       (async () => {
         // TODO: maybe mapping logic for query params instead of hardcoding like this.
         const res = await fetch(

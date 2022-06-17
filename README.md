@@ -1,9 +1,9 @@
 ###### Task Description
 
 - [x] Users are able to search universities on the university search page based on selected query parameters.
-- [] Users are able to see random user information when clicking the button or avatar.
+- [x] Users are able to see random user information when clicking the button or avatar.
 - [] In create user page users can fill out the form and submit it.
-- [] In the users filter page, random 100 users' info should be filterable as live search.
+- [x] In the users filter page, random 100 users' info should be filterable as live search.
 
 ###### University Search Page
 
@@ -23,11 +23,11 @@
 
 ###### Profile Popup
 
-- [] Create a UserDetailModal popup component and when its opened show user info from https://randomuser.me/api/
+- [x] Create a UserDetailModal popup component and when its opened show user info from https://randomuser.me/api/ (instead of re-fetching from the api to show the details, i used prop-drilling, because api needs seed value to find the right data)
 
 ###### Create User Page
 
-- [] Build a UserCreateForm component with body parameters (name,lastName,email,gender) and post it to https://randomuser.me/api/ then handle and log the error (because API does not have POST request end-point).
+- [x] Build a UserCreateForm component with body parameters (name,lastName,email,gender) and post it to https://randomuser.me/api/ then handle and log the error (because API does not have POST request end-point).
 
 ###### Styling
 

@@ -1,8 +1,7 @@
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect } from 'react';
 import { API } from '../constants/API';
 import { getUniversityContext } from '../context/UniversityContext';
 import { UniversityActionTypes } from '../context/universityReducer';
-// import { useFetch } from '../hooks/useFetch';
 import { University } from '../types';
 import { LeftArrowIcon } from './icons/LeftArrowIcon';
 import Loading from './icons/Loading';
@@ -42,6 +41,16 @@ const UniversityList = () => {
         break;
     }
   };
+
+  // Maybe make this a hook, both lists using it, or maybe entire pagination logic
+  useEffect(() => {
+    if (universityState.page! > TOTAL_PAGES) {
+      dispatch({
+        type: UniversityActionTypes.HANDLE_PAGE,
+        payload: { page: 0 },
+      });
+    }
+  }, [TOTAL_PAGES]);
 
   return (
     <section>
