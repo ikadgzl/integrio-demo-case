@@ -13,13 +13,32 @@ export interface University {
   web_pages: string[];
 }
 
-export interface ArrowIconsProps {
-  onClick?: MouseEventHandler<SVGElement>;
-  disabled?: boolean;
-}
-
 export interface UniversityQueryParams {
   name: string;
   country: string;
   nameContains: string;
+}
+
+type Username = {
+  title: string;
+  first: string;
+  last: string;
+};
+
+type UserPicture = {
+  large: string;
+  medium: string;
+  thumbnail: string;
+};
+
+export interface User {
+  email: string;
+  name: Username;
+  gender: string;
+  picture: UserPicture;
+}
+
+export interface ArrowIconsProps {
+  onClick?: MouseEventHandler<SVGElement>;
+  disabled?: boolean;
 }

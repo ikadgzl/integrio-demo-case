@@ -1,7 +1,8 @@
 import { MouseEvent, useState } from 'react';
 import { API } from '../constants/API';
 import { getUniversityContext } from '../context/UniversityContext';
-import { useFetch } from '../hooks/useFetch';
+import { UniversityActionTypes } from '../context/universityReducer';
+// import { useFetch } from '../hooks/useFetch';
 import { University } from '../types';
 import { LeftArrowIcon } from './icons/LeftArrowIcon';
 import Loading from './icons/Loading';
@@ -14,37 +15,37 @@ enum ArrowTypes {
 }
 
 const UniversityList = () => {
-  // TODO: when page is at 5, search uni and got 1 result, have to go back 4 times -> instead make pagination 0 again.
-  const [pagination, setPagination] = useState<number>(0);
-  const { universityState } = getUniversityContext();
-  const { state: universities, isLoading } = useFetch<University>(
-    // TODO: maybe mapping logic for query params instead of hardcoding like this.
-    `${API.university}?name=${universityState.name}&country=${universityState.country}&name_contains=${universityState.nameContains}`,
-    universityState
-  );
+  const { universityState, dispatch } = getUniversityContext();
 
+  // handle bang op below by proper actions on reducer
   const UNIVERSITIES_PER_PAGE = 10;
-  const TOTAL_PAGES = universities.length / UNIVERSITIES_PER_PAGE;
-  const BEGINNING_OF_THE_PAGE = pagination * UNIVERSITIES_PER_PAGE;
+  const TOTAL_PAGES =
+    universityState.universities!.length / UNIVERSITIES_PER_PAGE - 1;
+  const BEGINNING_OF_THE_PAGE = universityState.page! * UNIVERSITIES_PER_PAGE;
 
   const handlePagination = (e: MouseEvent<SVGElement>) => {
     switch (e.currentTarget.ariaLabel) {
       case ArrowTypes.LEFT:
-        pagination > 0 && setPagination((prevPagination) => prevPagination - 1);
+        universityState.page! > 0 &&
+          dispatch({
+            type: UniversityActionTypes.HANDLE_PAGE,
+            payload: { page: universityState.page! - 1 },
+          });
         break;
 
       case ArrowTypes.RIGHT:
-        pagination < TOTAL_PAGES - 1 &&
-          setPagination((prevPagination) => prevPagination + 1);
+        universityState.page! < TOTAL_PAGES &&
+          dispatch({
+            type: UniversityActionTypes.HANDLE_PAGE,
+            payload: { page: universityState.page! + 1 },
+          });
         break;
     }
   };
 
-  if (isLoading) return <Loading />;
-
   return (
     <section>
-      {universities.length > 0 ? (
+      {universityState.universities!.length > 0 ? (
         <div>
           <table>
             <thead>
@@ -58,8 +59,8 @@ const UniversityList = () => {
               </tr>
             </thead>
             <tbody>
-              {universities
-                .slice(
+              {universityState
+                .universities!.slice(
                   BEGINNING_OF_THE_PAGE,
                   BEGINNING_OF_THE_PAGE + UNIVERSITIES_PER_PAGE
                 )
@@ -69,9 +70,12 @@ const UniversityList = () => {
             </tbody>
           </table>
 
-          <LeftArrowIcon disabled={pagination < 1} onClick={handlePagination} />
+          <LeftArrowIcon
+            disabled={universityState.page! < 1}
+            onClick={handlePagination}
+          />
           <RightArrowIcon
-            disabled={pagination > TOTAL_PAGES - 1}
+            disabled={universityState.page! > TOTAL_PAGES - 1}
             onClick={handlePagination}
           />
         </div>

@@ -14,12 +14,12 @@
 
 ###### User Search Page
 
-- [] Retrieve random 100 users as ?results=100.
-- [] Create a UserFilter component for user search from retrieved 100 users. Filter parameters can be email and gender. Email filter should be a text field,and
-  should filter the results in realtime, which means, according to written text in the email search bar, rendered users on the page should change. Both filters should work
-  coordinately.
-- [] List the filtered results.
-- [] While listing results, add pagination (page's up-limit is 50 items).
+- [x] Retrieve random 100 users as ?results=100.
+- [x] Create a UserFilter component for user search from retrieved 100 users. Filter parameters can be email and gender. Email filter should be a text field,and
+      should filter the results in realtime, which means, according to written text in the email search bar, rendered users on the page should change. Both filters should work
+      coordinately.
+- [x] List the filtered results.
+- [x] While listing results, add pagination (page's up-limit is 50 items (I made it 10 for UI/UX purposes)).
 
 ###### Profile Popup
 

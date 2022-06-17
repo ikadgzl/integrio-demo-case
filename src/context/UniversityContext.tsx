@@ -5,20 +5,32 @@ import {
   useContext,
   useReducer,
 } from 'react';
-import { UniversityQueryParams } from '../types';
+import { University, UniversityQueryParams } from '../types';
 import {
   universityReducer,
   UniversityReducerAction,
 } from './universityReducer';
 
-export const INITIAL_VALUE: UniversityQueryParams = {
-  country: '',
-  name: '',
-  nameContains: '',
+export interface UniversityState {
+  queryParams?: UniversityQueryParams;
+  universities?: University[];
+  page?: number;
+  isLoading?: boolean;
+}
+
+const INITIAL_VALUE: UniversityState = {
+  queryParams: {
+    country: '',
+    name: '',
+    nameContains: '',
+  },
+  universities: [],
+  page: 0,
+  isLoading: false,
 };
 
 interface UniversityContext {
-  universityState: UniversityQueryParams;
+  universityState: UniversityState;
   dispatch: Dispatch<UniversityReducerAction>;
 }
 

@@ -1,22 +1,26 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
-import {
-  getUniversityContext,
-  INITIAL_VALUE,
-} from '../context/UniversityContext';
+import { getUniversityContext } from '../context/UniversityContext';
 import { UniversityQueryParams } from '../types';
 import { UniversityActionTypes } from '../context/universityReducer';
 
+const INITIAL_VALUE: UniversityQueryParams = {
+  country: '',
+  name: '',
+  nameContains: '',
+};
+
 const UniversityFilter = () => {
-  const { dispatch } = getUniversityContext();
   const [queryParams, setQueryParams] =
     useState<UniversityQueryParams>(INITIAL_VALUE);
+
+  const { dispatch } = getUniversityContext();
 
   const handleSubmit = (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     dispatch({
       type: UniversityActionTypes.SET_QUERY_PARAMS,
-      payload: queryParams,
+      payload: { queryParams },
     });
 
     setQueryParams(INITIAL_VALUE);
