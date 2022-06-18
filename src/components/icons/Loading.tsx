@@ -1,6 +1,7 @@
 const Loading = () => {
   return (
     <svg
+      className='loading'
       version='1.1'
       id='Layer_1'
       xmlns='http://www.w3.org/2000/svg'
@@ -9,6 +10,8 @@ const Loading = () => {
       y='0px'
       viewBox='0 0 367.136 367.136'
       xmlSpace='preserve'
+      width={40}
+      height={40}
     >
       <path
         d='M336.554,280.265c18.898-29.33,28.888-63.352,28.888-98.391C365.442,81.588,283.854,0,183.568,0S1.694,81.588,1.694,181.874

@@ -1,0 +1,12 @@
+.filterForm {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+  .filterInput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+  }
+}

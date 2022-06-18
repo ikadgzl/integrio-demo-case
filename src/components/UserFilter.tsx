@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { getUserContext } from '../context/UserContext';
 import { UserActionTypes } from '../context/userReducer';
+import styles from './UserFilter.module.scss';
 
 interface UserParams {
   email: string;
@@ -41,7 +42,7 @@ const UserFilter = () => {
   };
 
   return (
-    <form>
+    <form className={styles.filterForm}>
       <label>
         Email:
         <input

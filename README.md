@@ -31,6 +31,5 @@
 
 ###### Styling
 
-- [] Styling depends on your imagination for this task
-- [] No need to be detailed styling but it's great to have class names that are well-named and well structured
-- [] Prefer separated .scss files rather than in component styling (styled components)
+- [x] No need to be detailed styling but it's great to have class names that are well-named and well structured
+- [x] Prefer separated .scss files rather than in component styling (styled components)

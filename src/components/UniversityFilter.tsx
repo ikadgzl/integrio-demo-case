@@ -2,6 +2,7 @@ import { ChangeEvent, MouseEvent, useState } from 'react';
 import { getUniversityContext } from '../context/UniversityContext';
 import { UniversityQueryParams } from '../types';
 import { UniversityActionTypes } from '../context/universityReducer';
+import styles from './UniversityFilter.module.scss';
 
 const INITIAL_VALUE: UniversityQueryParams = {
   country: '',
@@ -34,8 +35,8 @@ const UniversityFilter = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form className={styles.filterForm} onSubmit={handleSubmit}>
+      <label className={styles.filterInput}>
         University name:
         <input
           type='text'
@@ -45,7 +46,7 @@ const UniversityFilter = () => {
         />
       </label>
 
-      <label>
+      <label className={styles.filterInput}>
         University name can contain:
         <input
           type='text'
@@ -55,7 +56,7 @@ const UniversityFilter = () => {
         />
       </label>
 
-      <label>
+      <label className={styles.filterInput}>
         Country name:
         <input
           type='text'
@@ -65,7 +66,9 @@ const UniversityFilter = () => {
         />
       </label>
 
-      <button type='submit'>Search!</button>
+      <button className={styles.filterButton} type='submit'>
+        Search!
+      </button>
     </form>
   );
 };

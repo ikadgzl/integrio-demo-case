@@ -1,12 +1,20 @@
-import { useEffect, useState } from 'react';
+import {
+  Dispatch,
+  MouseEventHandler,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { API } from '../constants/API';
 import { User } from '../types';
+import styles from './UserDetailModal.module.scss';
 
 interface UserDetailModalProps {
+  handleModal: MouseEventHandler<HTMLButtonElement>;
   email: string;
 }
 
-const UserDetailModal = ({ email }: UserDetailModalProps) => {
+const UserDetailModal = ({ email, handleModal }: UserDetailModalProps) => {
   const [userDetail, setUserDetail] = useState<User>();
 
   useEffect(() => {
@@ -23,15 +31,19 @@ const UserDetailModal = ({ email }: UserDetailModalProps) => {
   console.log(userDetail);
 
   return (
-    <section>
-      <div>
-        <img src={userDetail?.picture?.large} />
-        <p>
-          {userDetail?.name.title} {userDetail?.name.first}
-          {userDetail?.name.last}
-        </p>
-        <p>{userDetail?.gender}</p>
-        <p>{userDetail?.email}</p>
+    <section className={styles.profileModal}>
+      <div className={styles.container}>
+        <div>
+          <img src={userDetail?.picture?.large} />
+          <p>
+            {userDetail?.name.title} {userDetail?.name.first}
+            {userDetail?.name.last}
+          </p>
+          <p>{userDetail?.gender}</p>
+          <p>{userDetail?.email}</p>
+
+          <button onClick={handleModal}>CLOSE MODAL</button>
+        </div>
       </div>
     </section>
   );

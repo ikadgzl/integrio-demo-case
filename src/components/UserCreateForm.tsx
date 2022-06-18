@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { API } from '../constants/API';
 import Loading from './icons/Loading';
+import styles from './UserCreateForm.module.scss';
 
 enum Gender {
   MALE = 'male',
@@ -54,7 +55,7 @@ const UserCreateForm = () => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form className={styles.createForm} onSubmit={handleFormSubmit}>
       <label>
         Name
         <input
@@ -106,7 +107,11 @@ const UserCreateForm = () => {
       </label>
 
       <button type='submit'>{isLoading ? <Loading /> : 'Submit'}</button>
-      {error && <p>Error</p>}
+      {error && (
+        <p className={styles.error}>
+          An error occurred, please try again later
+        </p>
+      )}
     </form>
   );
 };

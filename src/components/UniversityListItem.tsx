@@ -12,7 +12,7 @@ const UniversityListItem = ({ university }: UniversityListItemProps) => {
       <td>{university.name}</td>
       <td>{university.domains}</td>
       <td>{university['state-province']}</td>
-      <td>{university.web_pages}</td>
+      <td>{university.web_pages[0]}</td>
     </tr>
   );
 };

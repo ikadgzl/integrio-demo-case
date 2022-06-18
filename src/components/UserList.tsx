@@ -4,6 +4,7 @@ import { UserActionTypes } from '../context/userReducer';
 import { LeftArrowIcon } from './icons/LeftArrowIcon';
 import { RightArrowIcon } from './icons/RightArrowIcon';
 import UserListItem from './UserListItem';
+import styles from './UserList.module.scss';
 
 enum ArrowTypes {
   LEFT = 'leftArrow',
@@ -47,22 +48,25 @@ const UserList = () => {
   }, [TOTAL_PAGES]);
 
   return (
-    <section>
-      {userState.filteredUsers
-        ?.slice(BEGINNING_OF_THE_PAGE, BEGINNING_OF_THE_PAGE + USERS_PER_PAGE)
-        .map((user) => (
-          <UserListItem key={user.email} user={user} />
-        ))}
-
-      <LeftArrowIcon
-        disabled={userState.page! < 1}
-        onClick={handlePagination}
-      />
-      <RightArrowIcon
-        disabled={userState.page! >= TOTAL_PAGES}
-        onClick={handlePagination}
-      />
-    </section>
+    <>
+      <section className={styles.container}>
+        {userState.filteredUsers
+          ?.slice(BEGINNING_OF_THE_PAGE, BEGINNING_OF_THE_PAGE + USERS_PER_PAGE)
+          .map((user) => (
+            <UserListItem key={user.email} user={user} />
+          ))}
+      </section>
+      <div className={styles.arrows}>
+        <LeftArrowIcon
+          disabled={userState.page! < 1}
+          onClick={handlePagination}
+        />
+        <RightArrowIcon
+          disabled={userState.page! >= TOTAL_PAGES}
+          onClick={handlePagination}
+        />
+      </div>
+    </>
   );
 };
 

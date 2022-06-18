@@ -1,5 +1,4 @@
 import { MouseEvent, useEffect } from 'react';
-import { API } from '../constants/API';
 import { getUniversityContext } from '../context/UniversityContext';
 import { UniversityActionTypes } from '../context/universityReducer';
 import { University } from '../types';
@@ -7,6 +6,7 @@ import { LeftArrowIcon } from './icons/LeftArrowIcon';
 import Loading from './icons/Loading';
 import { RightArrowIcon } from './icons/RightArrowIcon';
 import UniversityListItem from './UniversityListItem';
+import styles from './UniversityList.module.scss';
 
 enum ArrowTypes {
   LEFT = 'leftArrow',
@@ -52,11 +52,18 @@ const UniversityList = () => {
     }
   }, [TOTAL_PAGES]);
 
+  if (universityState.isLoading) {
+    return (
+      <section className={styles.listSection}>
+        <Loading />
+      </section>
+    );
+  }
   return (
-    <section>
+    <section className={styles.listSection}>
       {universityState.universities!.length > 0 ? (
-        <div>
-          <table>
+        <>
+          <table className={styles.table}>
             <thead>
               <tr>
                 <th>Code</th>
@@ -79,15 +86,17 @@ const UniversityList = () => {
             </tbody>
           </table>
 
-          <LeftArrowIcon
-            disabled={universityState.page! < 1}
-            onClick={handlePagination}
-          />
-          <RightArrowIcon
-            disabled={universityState.page! > TOTAL_PAGES - 1}
-            onClick={handlePagination}
-          />
-        </div>
+          <div className={styles.listIcons}>
+            <LeftArrowIcon
+              disabled={universityState.page! < 1}
+              onClick={handlePagination}
+            />
+            <RightArrowIcon
+              disabled={universityState.page! > TOTAL_PAGES - 1}
+              onClick={handlePagination}
+            />
+          </div>
+        </>
       ) : (
         <p>No such university!</p>
       )}

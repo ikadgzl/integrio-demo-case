@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { User } from '../types';
 import UserDetailModal from './UserDetailModal';
+import styles from './UserListItem.module.scss';
 
 interface UserItemListProps {
   user: User;
@@ -9,20 +10,23 @@ interface UserItemListProps {
 const UserListItem = ({ user }: UserItemListProps) => {
   const [modal, setModal] = useState<boolean>(false);
 
-  const handleModal = () => {
-    setModal((prevModal) => !prevModal);
+  const handleModal = (e: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
+    setModal(e.currentTarget.ariaPlaceholder === 'open' ? true : false);
   };
 
-  if (modal) return <UserDetailModal email={user.email} />;
+  if (modal)
+    return <UserDetailModal email={user.email} handleModal={handleModal} />;
 
   return (
-    <div>
-      <img onClick={handleModal} src={user.picture.large} />
-      <p>
-        {user.name.title} {user.name.first} {user.name.last}
-      </p>
-      <p>{user.gender}</p>
-      <p>{user.email}</p>
+    <div aria-placeholder='open' onClick={handleModal} className={styles.card}>
+      <img src={user.picture.large} />
+      <div>
+        <p>
+          {user.name.title} {user.name.first} {user.name.last}
+        </p>
+        <p>{user.gender}</p>
+        <p>{user.email}</p>
+      </div>
     </div>
   );
 };

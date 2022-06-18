@@ -6,6 +6,7 @@ import UserList from '../components/UserList';
 import { getUserContext } from '../context/UserContext';
 import { UserActionTypes } from '../context/userReducer';
 import { User } from '../types';
+import styles from './UserSearch.module.scss';
 
 const UserSearch = () => {
   const { userState, dispatch } = getUserContext();
@@ -37,7 +38,7 @@ const UserSearch = () => {
   if (userState.isLoading) return <Loading />;
 
   return (
-    <section>
+    <section className={styles.userSection}>
       <UserCreateForm />
       <UserFilter />
       <UserList />

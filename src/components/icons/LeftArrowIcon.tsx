@@ -11,6 +11,7 @@ export const LeftArrowIcon = ({ onClick, disabled }: ArrowIconsProps) => {
       xmlns='http://www.w3.org/2000/svg'
       onClick={onClick}
       aria-label='leftArrow'
+      cursor={disabled ? 'not-allowed' : 'pointer'}
     >
       <rect width='48' height='48' fill='white' fillOpacity='0.01' />
       <path

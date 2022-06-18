@@ -5,6 +5,7 @@ import UniversityList from '../components/UniversityList';
 import { API } from '../constants/API';
 import { getUniversityContext } from '../context/UniversityContext';
 import { UniversityActionTypes } from '../context/universityReducer';
+import styles from './UniversitySearch.module.scss';
 
 const UniversitySearch = () => {
   const { universityState, dispatch } = getUniversityContext();
@@ -66,13 +67,12 @@ const UniversitySearch = () => {
     }
   }, [universityState.queryParams]);
 
-  if (universityState.isLoading) return <Loading />;
-
   return (
-    <section>
+    // TODO: add back arrow to main menu.
+    <main className={styles.main}>
       <UniversityFilter />
       <UniversityList />
-    </section>
+    </main>
   );
 };
 
